@@ -1,0 +1,4 @@
+.fgrok.yaml
+cmd/fgrok/__debug*
+bin/*
+certs/*

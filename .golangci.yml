@@ -1,0 +1,55 @@
+version: "2"
+run:
+  concurrency: 4
+  go: "1.24"
+  issues-exit-code: 2
+  tests: false
+linters:
+  default: all
+  disable:
+    - wsl # is deprecated and always allowed in wsl >= v5
+    - lll
+    - noinlineerr
+    - godot
+    - exhaustruct
+    - varnamelen
+    - funlen
+    - exhaustive
+    - wrapcheck
+  settings:
+    depguard:
+      rules:
+        main:
+          allow:
+            - $gostd
+            - github.com/flrossetto/fgrok
+            - github.com/google/uuid
+            - github.com/sirupsen/logrus
+            - github.com/spf13/cobra
+            - golang.org/x/crypto/acme
+            - google.golang.org/grpc
+            - google.golang.org/protobuf/proto
+            - gopkg.in/yaml.v3
+#   exclusions:
+#     generated: lax
+#     presets:
+#       - comments
+#       - common-false-positives
+#       - legacy
+#       - std-error-handling
+#     paths:
+#       - third_party$
+#       - builtin$
+#       - examples$
+# formatters:
+#   enable:
+#     - gci
+#     - gofmt
+#     - gofumpt
+#     - goimports
+#   exclusions:
+#     generated: lax
+#     paths:
+#       - third_party$
+#       - builtin$
+#       - examples$

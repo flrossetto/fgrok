@@ -1,0 +1,52 @@
+# Example configuration for fgrok client
+client:
+  # Authentication token (min 32 chars)
+  token: "your_secure_token_here_with_at_least_32_chars_123456"
+
+  # fgrok server address (host:port format)
+  serverAddr: "yourdomain.com:27345"
+
+  # Server name for TLS validation
+  serverName: "yourdomain.com"
+
+  # Log level (debug, info, warn, error)
+  logLevel: "info"
+
+  # Tunnel configurations
+  tunnels:
+    # HTTP tunnel - exposes local service via HTTP/HTTPS
+    - type: "http"
+      # Subdomain for access (e.g. dash.yourdomain.com)
+      subdomain: "dash"
+      # Local service address
+      localAddr: "127.0.0.1:3000"
+
+    # TCP tunnel - exposes remote TCP port
+    - type: "tcp"
+      # Remote address (0.0.0.0 for all interfaces)
+      remoteAddr: "0.0.0.0:21800"
+      # Local service address
+      localAddr: "127.0.0.1:5432"
+
+# Example configuration for fgrok server
+server:
+  # Authentication token (must match client config)
+  token: "your_secure_token_here_with_at_least_32_chars_123456"
+
+  # HTTP port (use ":80" for default)
+  httpAddr: ":80"
+
+  # HTTPS port (use ":443" for default)
+  httpsAddr: ":443"
+
+  # gRPC port for client communication
+  grpcAddr: ":27345"
+
+  # Base domain for HTTP tunnels
+  domain: "fgrok.example"
+
+  # TLS certificates directory
+  certDir: "./certs"
+
+  # Log level (debug, info, warn, error)
+  logLevel: "info"
